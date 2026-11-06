@@ -10,7 +10,10 @@ equipo: SmartPotTech
 proyecto: smartpot.app
 -->
 
-# SmartPot-DB
+# SmartPot-DB-Mongo (Deprecado)
+
+> [!WARNING]
+> **Componente Legado (Stack A)**: Este componente ha sido reemplazado en producción por la base de datos canónica en PostgreSQL 17 + TimescaleDB 2.17 ([`SmartPot-DB`](https://github.com/SmartPotTech/SmartPot-DB)). Este documento describe la implementación original en MongoDB 8 como registro histórico.
 
 ## Ficha del documento
 

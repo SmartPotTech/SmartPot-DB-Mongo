@@ -1,9 +1,14 @@
-# SmartPot-DB (MongoDB)
+# SmartPot-DB-Mongo (Deprecated / Deprecado)
+
+> [!WARNING]
+> **Deprecated / Deprecado (Legacy Stack A)**  
+> **English:** This repository contains the legacy Stack A (v1.0) database implementation using MongoDB 8.0/7.0 with `$jsonSchema` validators. It has been **deprecated and superseded in production** by the canonical modern Stack B database: [**`SmartPot-DB`**](https://github.com/SmartPotTech/SmartPot-DB) (PostgreSQL 17 + TimescaleDB 2.17). Preserved solely for historical reference and data migration archives.  
+> **Español:** Este repositorio contiene la implementación legada del Stack A (v1.0) de base de datos basada en MongoDB 8.0/7.0 con validadores `$jsonSchema`. Ha sido **deprecada y sustituida en producción** por la base de datos canónica del Stack B: [**`SmartPot-DB`**](https://github.com/SmartPotTech/SmartPot-DB) (PostgreSQL 17 + TimescaleDB 2.17). Conservada exclusivamente como referencia histórica y archivo de migración.
 
 ## Estado del Proyecto
 
-[![Database Image CI](https://github.com/SmartPotTech/SmartPot-DB/actions/workflows/ci.yml/badge.svg)](https://github.com/SmartPotTech/SmartPot-DB/actions/workflows/ci.yml)
-[![Publish Docker Images](https://github.com/SmartPotTech/SmartPot-DB/actions/workflows/packaging.yml/badge.svg)](https://github.com/SmartPotTech/SmartPot-DB/actions/workflows/packaging.yml)
+[![Database Image CI](https://github.com/SmartPotTech/SmartPot-DB-Mongo/actions/workflows/ci.yml/badge.svg)](https://github.com/SmartPotTech/SmartPot-DB-Mongo/actions/workflows/ci.yml)
+[![Publish Docker Images](https://github.com/SmartPotTech/SmartPot-DB-Mongo/actions/workflows/packaging.yml/badge.svg)](https://github.com/SmartPotTech/SmartPot-DB-Mongo/actions/workflows/packaging.yml)
 
 ## Descripción
 
