@@ -1,46 +1,47 @@
 %%{init: {"theme": "base", "fontFamily": "Segoe UI, Arial, sans-serif", "themeVariables": {"fontFamily": "Segoe UI, Arial, sans-serif", "fontSize": "15px", "primaryColor": "#DDF5EA", "primaryTextColor": "#17261F", "primaryBorderColor": "#067A52", "secondaryColor": "#E3F2FB", "secondaryTextColor": "#17261F", "secondaryBorderColor": "#1F6FA0", "tertiaryColor": "#F2F7F4", "tertiaryTextColor": "#17261F", "tertiaryBorderColor": "#D5E3DC", "lineColor": "#5B6B63", "textColor": "#17261F", "mainBkg": "#DDF5EA", "nodeBorder": "#067A52", "clusterBkg": "#F7FAF8", "clusterBorder": "#D5E3DC", "edgeLabelBackground": "#FFFFFF", "actorBkg": "#067A52", "actorBorder": "#0B3D2B", "actorTextColor": "#FFFFFF", "actorLineColor": "#5B6B63", "signalColor": "#17261F", "signalTextColor": "#17261F", "labelBoxBkgColor": "#0B3D2B", "labelBoxBorderColor": "#0B3D2B", "labelTextColor": "#FFFFFF", "loopTextColor": "#0B3D2B", "noteBkgColor": "#FDF4DD", "noteBorderColor": "#C98D12", "noteTextColor": "#17261F", "activationBkgColor": "#DDF5EA", "activationBorderColor": "#067A52", "attributeBackgroundColorOdd": "#FFFFFF", "attributeBackgroundColorEven": "#F2F7F4"}}}%%
-erDiagram
-  USERS ||--o{ CROPS : "es dueño de"
-  USERS ||--o{ NOTIFICATIONS : "recibe"
-  USERS ||--o{ PASSWORD_RESET_TOKENS : "solicita"
-  USERS ||--o{ CHANNEL_LINKS : "vincula"
-  CROPS ||--o{ READINGS : "registra"
-  CROPS ||--o{ ACTUATORS : "tiene"
-  CROPS ||--o{ COMMANDS : "recibe"
-  CROPS ||--o{ CROP_CHANNELS : "avisa por"
-  CROPS ||--o| VIRTUAL_DEVICES : "simula si es virtual"
-  ACTUATORS ||--o{ COMMANDS : "ejecuta"
-  CROPS {
-    ObjectId ownerId "obligatorio"
-    string name "1 a 60"
-    string type "seis especies"
-    string kind "REAL o VIRTUAL"
-    string form "POT, NFT, TOWER, RAFT"
-    object placement "lugar, exposición y ubicación"
-    bool automationEnabled "obligatorio"
-    date createdAt "obligatorio"
+classDiagram
+  class users {
+    +ObjectId _id
+    +String email
+    +String passwordHash
+    +String role
   }
-  READINGS {
-    ObjectId cropId "obligatorio"
-    date measuredAt "obligatorio"
-    object measures "obligatorio"
-    string source "MQTT o HTTP"
+  class crops {
+    +ObjectId _id
+    +ObjectId ownerId
+    +String name
+    +String species
+    +String kind
+    +Document placement
+    +Document device
+    +Document health
   }
-  CROP_CHANNELS {
-    ObjectId cropId "obligatorio"
-    ObjectId ownerId "obligatorio"
-    string type "TELEGRAM"
-    bool enabled "obligatorio"
-    string delivery "INSTANT o DIGEST"
-    int digestHours "1 a 24"
-    string dailySummaryAt "HH:mm"
-    array recipients "hasta 10"
+  class readings {
+    +ObjectId _id
+    +ObjectId cropId
+    +Date timestamp
+    +Double temperature
+    +Double humidity
+    +Double brightness
+    +Double ph
+    +Double tds
+    +Double soilMoisture
   }
-  VIRTUAL_DEVICES {
-    ObjectId cropId "obligatorio"
-    ObjectId ownerId "obligatorio"
-    string mode "AUTO, MANUAL, WEATHER"
-    int intervalSeconds "10 a 300"
-    bool active "false en pausa"
-    object location "nombre, latitud, longitud"
+  class actuators {
+    +ObjectId _id
+    +ObjectId cropId
+    +String type
+    +String state
   }
+  class commands {
+    +ObjectId _id
+    +ObjectId cropId
+    +ObjectId actuatorId
+    +String action
+    +Integer durationSeconds
+    +String status
+  }
+  users "1" --> "*" crops : owns
+  crops "1" --> "*" readings : telemetry
+  crops "1" --> "*" actuators : controls
+  crops "1" --> "*" commands : dispatches

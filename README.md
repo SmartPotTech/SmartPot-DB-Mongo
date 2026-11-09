@@ -1,23 +1,19 @@
-# SmartPot-DB-Mongo (Deprecated / Deprecado)
+# SmartPot-DB-Mongo (Legacy Stack A Reference)
 
 > [!WARNING]
-> **Deprecated / Deprecado (Legacy Stack A)**  
-> **English:** This repository contains the legacy Stack A (v1.0) database implementation using MongoDB 8.0/7.0 with `$jsonSchema` validators. It has been **deprecated and superseded in production** by the canonical modern Stack B database: [**`SmartPot-DB`**](https://github.com/SmartPotTech/SmartPot-DB) (PostgreSQL 17 + TimescaleDB 2.17). Preserved solely for historical reference and data migration archives.  
-> **Español:** Este repositorio contiene la implementación legada del Stack A (v1.0) de base de datos basada en MongoDB 8.0/7.0 con validadores `$jsonSchema`. Ha sido **deprecada y sustituida en producción** por la base de datos canónica del Stack B: [**`SmartPot-DB`**](https://github.com/SmartPotTech/SmartPot-DB) (PostgreSQL 17 + TimescaleDB 2.17). Conservada exclusivamente como referencia histórica y archivo de migración.
+> **Deprecated (Legacy Stack A Reference Implementation)**  
+> This repository contains the legacy Stack A (v1.0) database implementation using MongoDB 8.0/7.0 with `$jsonSchema` validators. It has been **deprecated and superseded in production** by the canonical modern Stack B database: [**`SmartPot-DB`**](https://github.com/SmartPotTech/SmartPot-DB) (PostgreSQL 17 + TimescaleDB 2.17.2 with strict TCP healthcheck on 127.0.0.1). Preserved solely for historical reference and data migration archives.
 
-## Estado del Proyecto
+## Project Status
 
 [![Database Image CI](https://github.com/SmartPotTech/SmartPot-DB-Mongo/actions/workflows/ci.yml/badge.svg)](https://github.com/SmartPotTech/SmartPot-DB-Mongo/actions/workflows/ci.yml)
 [![Publish Docker Images](https://github.com/SmartPotTech/SmartPot-DB-Mongo/actions/workflows/packaging.yml/badge.svg)](https://github.com/SmartPotTech/SmartPot-DB-Mongo/actions/workflows/packaging.yml)
 
-## Descripción
+## Description
 
-SmartPot-DB es la base de datos de **SmartPot**: una imagen de **MongoDB 8.0** que en su primer arranque crea el usuario
-de la aplicación, las diez colecciones con **validación `$jsonSchema`** y, si se pide, una cuenta de demostración con
-dos cultivos y 48 horas de lecturas. [SmartPot-API](https://github.com/SmartPotTech/SmartPot-API) se conecta con el
-usuario de la aplicación, que solo tiene `readWrite` sobre su base, y crea los índices al arrancar.
+SmartPot-DB-Mongo is the document persistence engine of **SmartPot Stack A**: an initialized **MongoDB 8.0/7.0** image configuring collections with strict `$jsonSchema` validation, least-privilege application credentials, and automated schema migrations.
 
-## Estructura del Proyecto
+## Project Structure
 
 ```text
 SmartPot-DB/
@@ -125,7 +121,7 @@ Abre http://localhost:5173 e ingresa con `demo@smartpot.app` / `SmartPot2026`. S
 `docker compose -p smartpot-demo down` (con `-v` borra también los datos). Más detalle en la
 [demo](https://github.com/SmartPotTech/.github/tree/main/docker/demo).
 
-### Requisitos Previos
+### Prerequisites
 
 - Docker (Docker Desktop o Docker Engine con Compose v2)
 
@@ -180,6 +176,6 @@ completa en una sola imagen ampliable:
 - [Modelo de dominio](https://github.com/SmartPotTech/.github/blob/main/docs/diagrams/SmartPot_Global_06_Domain_Model.svg):
   las entidades de la API que se guardan en cada colección
 
-## Licencia
+## License
 
 Este proyecto está bajo la licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
